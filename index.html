@@ -7,121 +7,74 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
 * {margin:0; padding:0; box-sizing:border-box; font-family:'Roboto',sans-serif;}
-body, html {height:100%; overflow-x:hidden; position:relative;}
+body, html {height:100%;}
 
-/* Fundo do site = logo com zoom suave */
+/* Fundo com degradê */
 body {
-  background: url('carolina_logo.png') center/cover no-repeat;
-  animation: zoomBackground 30s infinite alternate;
-}
-@keyframes zoomBackground {
-  0% { transform: scale(1); }
-  100% { transform: scale(1.05); }
+  background: linear-gradient(135deg, #1a1a1a, #ff0000);
+  color:#fff;
 }
 
-/* Degradê sobre o fundo */
-body::before {
-  content:'';
-  position:absolute; top:0; left:0; width:100%; height:100%;
-  background: linear-gradient(135deg, rgba(0,0,0,0.3), rgba(128,0,0,0.3));
-  z-index:1;
-}
-
-/* Menu fixo e animado */
+/* Menu fixo */
 nav {
-  position: fixed; top:0; left:0; width:100%; text-align:center; padding:20px; z-index:10;
+  position: fixed; top:0; left:0; width:100%; text-align:center; padding:15px; z-index:10;
   background: rgba(0,0,0,0.5);
 }
 nav a {
-  color:#fff; text-decoration:none; margin:0 15px; font-weight:700; position:relative; transition: all 0.3s ease;
+  color:#fff; text-decoration:none; margin:0 15px; font-weight:700; transition: all 0.3s ease;
 }
-nav a::after {
-  content:''; position:absolute; width:0; height:2px; bottom:-5px; left:0; background:#ff0000; transition: all 0.3s ease;
+nav a:hover {
+  color:#ff5555;
+  transform: translateY(-3px);
 }
-nav a:hover::after { width:100%; }
-nav a:hover { color:#ff5555; transform:translateY(-3px); }
 
-/* Banner no topo com parallax leve */
+/* Banner topo */
 header.banner {
-  position: relative;
   width:100%;
-  height:400px;
+  height:150px; /* discreto */
   background: url('banner.jpg') center/cover no-repeat;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  color:#fff;
-  z-index:2;
-  overflow:hidden;
-}
-header.banner::before {
-  content:'';
-  position:absolute; top:0; left:0; width:100%; height:100%;
-  background: linear-gradient(0deg, rgba(0,0,0,0.4), rgba(0,0,0,0.2));
-  z-index:1;
-}
-header.banner .banner-text {
-  text-align:center;
-  background: rgba(0,0,0,0.25);
-  padding:20px 40px;
+  margin-top:60px; /* abaixo do menu */
   border-radius:10px;
-  box-shadow:0 0 20px rgba(0,0,0,0.5);
-  z-index:2;
-  animation:fadeIn 2s ease forwards;
+  box-shadow:0 5px 15px rgba(0,0,0,0.3);
 }
-header.banner .banner-text h1 {
-  font-size:3rem;
-  margin-bottom:15px;
-  text-shadow:0 0 10px #000;
+
+/* Conteúdo abaixo do banner */
+.main-content {
+  max-width:800px;
+  margin:40px auto 0 auto;
+  text-align:center;
 }
-header.banner .banner-text p {
+.main-content h1 {
+  font-size:2.5rem;
+  margin-bottom:20px;
+}
+.main-content p {
   font-size:1.2rem;
-  max-width:600px;
-  margin:0 auto 20px auto;
+  line-height:1.6;
+  margin-bottom:30px;
 }
-header.banner .banner-text button {
+.main-content button {
   padding:12px 30px;
   border:none;
   border-radius:10px;
-  background:linear-gradient(45deg,#ff0000,#cc0000);
+  background: linear-gradient(45deg,#ff0000,#cc0000);
   color:#fff;
   font-weight:700;
   font-size:1rem;
   cursor:pointer;
   transition: all 0.4s ease;
-  box-shadow:0 5px 15px rgba(0,0,0,0.3);
 }
-header.banner .banner-text button:hover {
-  transform:translateY(-5px) scale(1.05);
-  background:linear-gradient(45deg,#ff5555,#ff0000);
-  box-shadow:0 8px 20px rgba(0,0,0,0.5);
-}
-
-/* Brilhos flutuantes */
-.star {
-  position: absolute;
-  width: 5px; height: 5px;
-  background: #fff;
-  border-radius: 50%;
-  opacity: 0.5;
-  animation: float 6s infinite;
-}
-@keyframes float {
-  0% { transform: translateY(0) translateX(0); opacity:0.5; }
-  50% { transform: translateY(-25px) translateX(15px); opacity:1; }
-  100% { transform: translateY(0) translateX(0); opacity:0.5; }
-}
-
-/* Fade in do banner */
-@keyframes fadeIn {
-  from {opacity:0; transform: translateY(20px);}
-  to {opacity:1; transform: translateY(0);}
+.main-content button:hover {
+  transform:translateY(-3px) scale(1.05);
+  background: linear-gradient(45deg,#ff5555,#ff0000);
+  box-shadow:0 5px 15px rgba(0,0,0,0.4);
 }
 
 /* Responsividade */
 @media(max-width:768px){
-  header.banner .banner-text h1 { font-size:2rem; }
-  header.banner .banner-text p { font-size:1rem; }
+  .main-content h1 { font-size:2rem; }
+  .main-content p { font-size:1rem; }
+  header.banner { height:120px; }
 }
 </style>
 </head>
@@ -134,40 +87,13 @@ header.banner .banner-text button:hover {
   <a href="contato.html">Contato</a>
 </nav>
 
-<!-- Banner -->
-<header class="banner">
-  <div class="banner-text">
-    <h1>Carolina Vôlei</h1>
-    <p>Paixão, disciplina e vôlei feminino. Um time em formação, pronto para representar Sacramento com garra e determinação.</p>
-    <button onclick="window.location.href='sobre.html'">Saiba mais</button>
-  </div>
-</header>
+<header class="banner"></header>
 
-<!-- Brilhos flutuantes -->
-<script>
-for(let i=0;i<50;i++){
-  let star = document.createElement('div');
-  star.className = 'star';
-  star.style.top = Math.random()*100+'%';
-  star.style.left = Math.random()*100+'%';
-  star.style.width = star.style.height = (Math.random()*4+2)+'px';
-  star.style.animationDuration = (Math.random()*4+3)+'s';
-  document.body.appendChild(star);
-}
-
-// Brilhos interativos que seguem o mouse
-document.addEventListener('mousemove', e => {
-  let glow = document.createElement('div');
-  glow.className = 'star';
-  glow.style.top = e.clientY + 'px';
-  glow.style.left = e.clientX + 'px';
-  glow.style.width = glow.style.height = '3px';
-  glow.style.opacity = 0.6;
-  glow.style.transition = 'all 0.5s ease';
-  document.body.appendChild(glow);
-  setTimeout(()=>glow.remove(),1000);
-});
-</script>
+<div class="main-content">
+  <h1>Carolina Vôlei</h1>
+  <p>Paixão, disciplina e vôlei feminino. Um time em formação, pronto para representar Sacramento com garra e determinação.</p>
+  <button onclick="window.location.href='sobre.html'">Saiba mais</button>
+</div>
 
 </body>
 </html>
