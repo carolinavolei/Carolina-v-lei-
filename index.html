@@ -3,60 +3,171 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Carolina Vôlei - Home</title>
+<title>Carolina Vôlei</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  *{margin:0;padding:0;box-sizing:border-box;font-family:'Roboto',sans-serif;}
-  body{background:#111;color:#fff;overflow-x:hidden;}
-  
-  /* Header e Menu */
-  header{position:relative;background:linear-gradient(135deg,#000,#800000);text-align:center;height:100vh;overflow:hidden;}
-  header img{width:250px;max-width:80%;opacity:0;transform:scale(0.8);animation:fadeZoom 2s forwards;}
-  @keyframes fadeZoom{to{opacity:1;transform:scale(1);}}
-  nav{position:absolute;top:20px;right:50px;}
-  nav a{color:#fff;text-decoration:none;margin:0 15px;font-weight:700;font-size:1.1rem;position:relative;transition:.3s;}
-  nav a::after{content:'';position:absolute;width:0;height:2px;bottom:-5px;left:0;background:#ff0000;transition:.3s;}
-  nav a:hover::after{width:100%;}
-  nav a:hover{color:#ff5555;}
-  
-  /* Partículas de fundo */
-  .particles{position:absolute;width:100%;height:100%;top:0;left:0;pointer-events:none;overflow:hidden;}
-  .particle{position:absolute;width:6px;height:6px;background:#ff0000;border-radius:50%;opacity:0.7;animation:moveParticle 10s linear infinite;}
-  @keyframes moveParticle{0%{transform:translateY(0) translateX(0);}100%{transform:translateY(-1200px) translateX(200px);}}
-  
-  /* Home text */
-  .home-content{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;}
-  .home-content h1{font-size:3rem;color:#ff0000;margin-bottom:20px;text-shadow:0 0 10px #000;}
-  .home-content p{font-size:1.2rem;max-width:600px;margin:0 auto;line-height:1.6;}
-  .home-content button{margin-top:30px;padding:15px 30px;border:none;border-radius:10px;background:linear-gradient(45deg,#ff0000,#cc0000);color:#fff;font-weight:700;font-size:1rem;cursor:pointer;transition:.4s;box-shadow:0 5px 15px rgba(0,0,0,0.3);}
-  .home-content button:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,0.4);background:linear-gradient(45deg,#ff5555,#ff0000);}
+* {margin:0; padding:0; box-sizing:border-box; font-family:'Roboto',sans-serif;}
+body, html {height:100%; overflow-x:hidden; position:relative;}
+
+/* Fundo do site = logo com zoom suave */
+body {
+  background: url('carolina_logo.png') center/cover no-repeat;
+  animation: zoomBackground 30s infinite alternate;
+}
+@keyframes zoomBackground {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.05); }
+}
+
+/* Degradê sobre o fundo */
+body::before {
+  content:'';
+  position:absolute; top:0; left:0; width:100%; height:100%;
+  background: linear-gradient(135deg, rgba(0,0,0,0.3), rgba(128,0,0,0.3));
+  z-index:1;
+}
+
+/* Menu fixo e animado */
+nav {
+  position: fixed; top:0; left:0; width:100%; text-align:center; padding:20px; z-index:10;
+  background: rgba(0,0,0,0.5);
+}
+nav a {
+  color:#fff; text-decoration:none; margin:0 15px; font-weight:700; position:relative; transition: all 0.3s ease;
+}
+nav a::after {
+  content:''; position:absolute; width:0; height:2px; bottom:-5px; left:0; background:#ff0000; transition: all 0.3s ease;
+}
+nav a:hover::after { width:100%; }
+nav a:hover { color:#ff5555; transform:translateY(-3px); }
+
+/* Banner no topo com parallax leve */
+header.banner {
+  position: relative;
+  width:100%;
+  height:400px;
+  background: url('banner.jpg') center/cover no-repeat;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:#fff;
+  z-index:2;
+  overflow:hidden;
+}
+header.banner::before {
+  content:'';
+  position:absolute; top:0; left:0; width:100%; height:100%;
+  background: linear-gradient(0deg, rgba(0,0,0,0.4), rgba(0,0,0,0.2));
+  z-index:1;
+}
+header.banner .banner-text {
+  text-align:center;
+  background: rgba(0,0,0,0.25);
+  padding:20px 40px;
+  border-radius:10px;
+  box-shadow:0 0 20px rgba(0,0,0,0.5);
+  z-index:2;
+  animation:fadeIn 2s ease forwards;
+}
+header.banner .banner-text h1 {
+  font-size:3rem;
+  margin-bottom:15px;
+  text-shadow:0 0 10px #000;
+}
+header.banner .banner-text p {
+  font-size:1.2rem;
+  max-width:600px;
+  margin:0 auto 20px auto;
+}
+header.banner .banner-text button {
+  padding:12px 30px;
+  border:none;
+  border-radius:10px;
+  background:linear-gradient(45deg,#ff0000,#cc0000);
+  color:#fff;
+  font-weight:700;
+  font-size:1rem;
+  cursor:pointer;
+  transition: all 0.4s ease;
+  box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+header.banner .banner-text button:hover {
+  transform:translateY(-5px) scale(1.05);
+  background:linear-gradient(45deg,#ff5555,#ff0000);
+  box-shadow:0 8px 20px rgba(0,0,0,0.5);
+}
+
+/* Brilhos flutuantes */
+.star {
+  position: absolute;
+  width: 5px; height: 5px;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: float 6s infinite;
+}
+@keyframes float {
+  0% { transform: translateY(0) translateX(0); opacity:0.5; }
+  50% { transform: translateY(-25px) translateX(15px); opacity:1; }
+  100% { transform: translateY(0) translateX(0); opacity:0.5; }
+}
+
+/* Fade in do banner */
+@keyframes fadeIn {
+  from {opacity:0; transform: translateY(20px);}
+  to {opacity:1; transform: translateY(0);}
+}
+
+/* Responsividade */
+@media(max-width:768px){
+  header.banner .banner-text h1 { font-size:2rem; }
+  header.banner .banner-text p { font-size:1rem; }
+}
 </style>
 </head>
 <body>
 
-<header>
-  <img src="carolina_logo.png" alt="Carolina Vôlei">
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="sobre.html">Sobre</a>
-    <a href="elenco.html">Elenco</a>
-    <a href="contato.html">Contato</a>
-  </nav>
-  
-  <div class="particles">
-    <div class="particle" style="top:90%; left:20%; animation-duration:12s;"></div>
-    <div class="particle" style="top:70%; left:50%; animation-duration:15s;"></div>
-    <div class="particle" style="top:80%; left:80%; animation-duration:10s;"></div>
-    <div class="particle" style="top:95%; left:60%; animation-duration:18s;"></div>
-    <div class="particle" style="top:85%; left:30%; animation-duration:14s;"></div>
-  </div>
-  
-  <div class="home-content">
+<nav>
+  <a href="index.html">Home</a>
+  <a href="sobre.html">Sobre</a>
+  <a href="elenco.html">Elenco</a>
+  <a href="contato.html">Contato</a>
+</nav>
+
+<!-- Banner -->
+<header class="banner">
+  <div class="banner-text">
     <h1>Carolina Vôlei</h1>
     <p>Paixão, disciplina e vôlei feminino. Um time em formação, pronto para representar Sacramento com garra e determinação.</p>
     <button onclick="window.location.href='sobre.html'">Saiba mais</button>
   </div>
 </header>
+
+<!-- Brilhos flutuantes -->
+<script>
+for(let i=0;i<50;i++){
+  let star = document.createElement('div');
+  star.className = 'star';
+  star.style.top = Math.random()*100+'%';
+  star.style.left = Math.random()*100+'%';
+  star.style.width = star.style.height = (Math.random()*4+2)+'px';
+  star.style.animationDuration = (Math.random()*4+3)+'s';
+  document.body.appendChild(star);
+}
+
+// Brilhos interativos que seguem o mouse
+document.addEventListener('mousemove', e => {
+  let glow = document.createElement('div');
+  glow.className = 'star';
+  glow.style.top = e.clientY + 'px';
+  glow.style.left = e.clientX + 'px';
+  glow.style.width = glow.style.height = '3px';
+  glow.style.opacity = 0.6;
+  glow.style.transition = 'all 0.5s ease';
+  document.body.appendChild(glow);
+  setTimeout(()=>glow.remove(),1000);
+});
+</script>
 
 </body>
 </html>
