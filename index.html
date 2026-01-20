@@ -28,21 +28,26 @@ nav a:hover {
   transform: translateY(-3px);
 }
 
-/* Banner topo */
+/* Banner */
 header.banner {
   width:100%;
-  height:150px; /* discreto */
-  background: url('banner.jpg') center/cover no-repeat;
+  text-align:center;
   margin-top:60px; /* abaixo do menu */
+}
+header.banner img {
+  width:auto;
+  max-width:90%;
+  height:auto;
   border-radius:10px;
   box-shadow:0 5px 15px rgba(0,0,0,0.3);
 }
 
-/* Conteúdo abaixo do banner */
+/* Seção principal */
 .main-content {
-  max-width:800px;
-  margin:40px auto 0 auto;
+  max-width:900px;
+  margin:40px auto;
   text-align:center;
+  padding:0 20px;
 }
 .main-content h1 {
   font-size:2.5rem;
@@ -51,8 +56,49 @@ header.banner {
 .main-content p {
   font-size:1.2rem;
   line-height:1.6;
-  margin-bottom:30px;
+  margin-bottom:40px;
 }
+
+/* Valores do time */
+.values {
+  display:flex;
+  justify-content:center;
+  gap:50px;
+  flex-wrap:wrap;
+  margin-bottom:50px;
+}
+.value-item {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.value-item img {
+  width:60px;
+  height:60px;
+  margin-bottom:10px;
+}
+.value-item span {
+  font-size:1.1rem;
+  font-weight:700;
+}
+
+/* Redes sociais */
+.social {
+  text-align:center;
+  margin-bottom:50px;
+}
+.social a {
+  color:#fff;
+  text-decoration:none;
+  font-weight:700;
+  margin:0 15px;
+  transition:all 0.3s ease;
+}
+.social a:hover {
+  color:#ff5555;
+}
+
+/* Botão principal (se quiser usar) */
 .main-content button {
   padding:12px 30px;
   border:none;
@@ -74,7 +120,8 @@ header.banner {
 @media(max-width:768px){
   .main-content h1 { font-size:2rem; }
   .main-content p { font-size:1rem; }
-  header.banner { height:120px; }
+  .values { gap:30px; }
+  .value-item img { width:50px; height:50px; }
 }
 </style>
 </head>
@@ -87,12 +134,33 @@ header.banner {
   <a href="contato.html">Contato</a>
 </nav>
 
-<header class="banner"></header>
+<header class="banner">
+  <img src="banner.jpg" alt="Banner Carolina Vôlei">
+</header>
 
 <div class="main-content">
   <h1>Carolina Vôlei</h1>
-  <p>Paixão, disciplina e vôlei feminino. Um time em formação, pronto para representar Sacramento com garra e determinação.</p>
-  <button onclick="window.location.href='sobre.html'">Saiba mais</button>
+  <p>Paixão, disciplina e garra definem nosso time. Um grupo de atletas dedicadas que busca excelência e diversão em cada treino e jogo.</p>
+
+  <div class="values">
+    <div class="value-item">
+      <img src="icone-paixao.png" alt="Paixão">
+      <span>Paixão</span>
+    </div>
+    <div class="value-item">
+      <img src="icone-disciplina.png" alt="Disciplina">
+      <span>Disciplina</span>
+    </div>
+    <div class="value-item">
+      <img src="icone-garra.png" alt="Garra">
+      <span>Garra</span>
+    </div>
+  </div>
+
+  <div class="social">
+    <span>Siga nas redes: </span>
+    <a href="https://www.instagram.com/carolinavolei" target="_blank">@carolinavolei</a>
+  </div>
 </div>
 
 </body>
